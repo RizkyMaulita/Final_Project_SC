@@ -17,7 +17,36 @@
                         <h3 class="card-title"> Jawaban </h3>
                     </div>
                     <div class="card-body">
-                        <p> isi Jawaban </p>
+                        @forelse($questions->jawaban as $jawaban)
+                            <div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        {{ $jawaban -> user ->name }}
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $jawaban -> jawaban }}</p>
+                                        <!-- tombol -->
+                                        <div style='display:flex;'>
+                                        <a href="#" class="btn btn-primary btn-sm m-1">Komentari</a>
+                                        @if($questions -> user -> id == Auth::id() || $jawaban -> user -> id == Auth::id())
+                                            @if($jawaban -> user -> id == Auth::id())
+                                            <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
+                                            @endif
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">
+                                            </form>
+                                        @endif
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @empty
+                            Belum ada jawaban
+                        @endforelse
                     </div>
                 </div>  
             </div>
@@ -64,7 +93,35 @@
                         </div>
                     </div>
                     <div class="card-body"> 
-                        <p> Isi Komentar </p>
+                    @forelse($questions->komentarPertanyaan as $komentar)
+                            <div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        {{ $komentar -> user ->name }}
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $komentar -> komentar }}</p>
+                                        <!-- tombol -->
+                                        <div style='display:flex;'>
+                                        @if($questions -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
+                                            @if($komentar -> user -> id == Auth::id())
+                                            <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
+                                            @endif
+                                            <form action="#" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">
+                                            </form>
+                                        @endif
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @empty
+                            Belum ada komentar
+                        @endforelse
                     </div>
                 </div>
             </div>
