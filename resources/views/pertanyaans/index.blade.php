@@ -19,14 +19,16 @@
                 <a class="btn btn-primary mb-2" href="{{ route('pertanyaans.create') }}"> Buat pertanyaan baru</a>
                 
                 @forelse($pertanyaans as $key => $pertanyaan)
+
                   <div class="card pb-2 pt-2">
                     <div class="card-header">
                       {{ $pertanyaan -> user ->name }}
+
                     </div>
                     <div class="card-body">
                       <h4 class="card-title">{{ $pertanyaan -> judul }}</h4>
                       <br>
-                      <p class="card-text">{{ $pertanyaan -> isi }}</p>
+                      <p class="card-text">{!! $pertanyaan -> isi !!}</p>
                       
                       <!-- tags -->
                       </div>
