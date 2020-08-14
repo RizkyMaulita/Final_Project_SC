@@ -16,9 +16,8 @@
           <img src="{{asset('/adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <!-- <a href="#" class="d-block">{{ Auth::user() -> name }}</a> -->
-          <!-- ini pakai eloquent relationship one to one -->
-          <a href="#" class="d-block">{{ Auth::user() -> profile -> full_name }}</a>
+          <a href="#" class="d-block"> Coba </a>
+          
         </div>
       </div>
 
