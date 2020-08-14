@@ -14,13 +14,13 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/posts" method="POST">
+              <form role="form" action="/pertanyaans" method="POST">
                   @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="judul"> Judul </label>
                     <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul','') }}" placeholder="Masukkan judul pertanyaan">
-                    @error('title')
+                    @error('judul')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror  
                 </div>
@@ -29,7 +29,7 @@
                     <input type="text" class="form-control" id="isi" name="isi" value="{{ old('isi','') }}" placeholder="Masukkan isi pertanyaan">
                     <!-- ini dari TinyMCE Unisharp -->
                     <!-- <textarea name="body" class="form-control my-editor">{!! old('body', $body ?? '') !!}</textarea> -->
-                    @error('title')
+                    @error('isi')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror 
                 </div>

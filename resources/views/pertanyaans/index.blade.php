@@ -32,12 +32,11 @@
                             <td> {{ $key + 1 }}</td>
                             <td> {{ $pertanyaan -> judul }} </td>
                             <td> {{ $pertanyaan -> isi }} </td>
-                            <!-- <td> {!! $post -> body !!} </td> -->
                             <td style='display:flex;'> 
-                                <!-- <a href="/posts/{{$post->id}}" class="btn btn-info btn-im"> Show </a> -->
-                                <a href="{{ route( 'pertanyaans.show', ['pertanyaans' => $pertanyaan-> id]) }}" class="btn btn-info btn-im"> Show </a>
-                                <a href="/pertanyaans/{{$pertanyaans->id}}/edit" class="btn btn-default btn-im"> Edit </a>
-                                <form action="/pertanyaans/{{$pertanyaans-> id}}" method="POST">
+                                
+                                <a href="/pertanyaans/{{ $pertanyaan->id }}" class="btn btn-info btn-im"> Show </a>
+                                <a href="/pertanyaans/{{$pertanyaan->id }}/edit" class="btn btn-default btn-im"> Edit </a>
+                                <form action="/pertanyaans/{{$pertanyaan->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" value="delete" class="btn btn-danger btn-sm">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class pertanyaan extends Model
 {
+    protected $table = 'pertanyaans';
     protected $guarded = [];
 
     public function user()
@@ -15,11 +16,16 @@ class pertanyaan extends Model
 
     public function jawaban()
     {
-        return $this->hasMany('App\Jawaban');
+        return $this->hasMany('App\jawaban');
     }
 
     public function j_tepat()
     {
-        return $this->belongsTo('App\Jawaban','jawaban_tepat_id');
+        return $this->belongsTo('App\jawaban','jawaban_tepat_id');
+    }
+
+    public function tag()
+    {
+        return $this->belongsToMany('App\tag','pertanyaantags','pertanyaan_id','tag_id');
     }
 }

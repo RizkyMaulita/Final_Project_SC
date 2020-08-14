@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class tag extends Model
 {
     protected $guarded = [];
-
+    public $timestamps = false;
 
     public function pertanyaan()
     {

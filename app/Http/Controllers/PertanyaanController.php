@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pertanyaan;
+use App\pertanyaan;
+use App\tag;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PertanyaanController extends Controller
 {
@@ -15,6 +18,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $pertanyaans = Pertanyaan::all();
+        //dd($pertanyaans);
         return view('pertanyaans.index',compact('pertanyaans'));
     }
 
@@ -37,7 +41,32 @@ class PertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required|unique:pertanyaans|max:45',
+            'isi' => 'required|max:255',
+        ]);
+        
+        $tag = $request->tags;
+        $tags = explode(",", $tag);
+        $tag_ids = [];
+
+        foreach($tags as $t){
+            $ta = tag::firstOrCreate(['tag_name' => $t]);
+            $tag_ids[] = $ta->id;
+        }
+
+        $pertanyaan = pertanyaan::create([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'user_id' => Auth::id()
+        ]);
+
+        $pertanyaan->tag()->sync($tag_ids);
+        
+        $user = User::find(Auth::id());
+        $user->pertanyaan()->save($pertanyaan);
+
+        return redirect('/pertanyaans')->with('berhasil','Data Berhasil Ditambahkan!');
     }
 
     /**

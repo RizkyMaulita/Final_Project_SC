@@ -14,7 +14,7 @@ class AddJawabanIdToPertanyaans extends Migration
     public function up()
     {
         Schema::table('pertanyaans', function (Blueprint $table) {
-            $table->unsignedBigInteger('jawaban_tepat_id');
+            $table->unsignedBigInteger('jawaban_tepat_id')->nullable();
             $table->foreign('jawaban_tepat_id')->references('id')->on('jawabans');
         });
     }

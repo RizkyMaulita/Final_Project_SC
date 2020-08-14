@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function pertanyaan()
     {
-        return $this->hasMany('App\Pertanyaan');
+        return $this->hasMany('App\pertanyaan');
     }
 }

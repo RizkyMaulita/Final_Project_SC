@@ -15,11 +15,11 @@ class jawaban extends Model
     
     public function pertanyaan()
     {
-        return $this->belongsTo('App\Pertanyaan');
+        return $this->belongsTo('App\pertanyaan');
     }
 
     public function j_tepat()
     {
-        return $this->hasOne('App\Pertanyaan','jawaban_tepat_id');
+        return $this->hasOne('App\pertanyaan','jawaban_tepat_id');
     }
 }
