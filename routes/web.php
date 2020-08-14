@@ -18,6 +18,9 @@ Route::get('/', function () {
 
 Route::resource('pertanyaans','PertanyaanController');
 Route::resource('jawabans','JawabanController');
+// Route::resource('komentarpertanyaans','KomentarPertanyaanController');
+Route::get('pertanyaans/komentar', 'KomentarPertanyaanController@create');
+Route::put('pertanyaans','KomentarPertanyaanController@store');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

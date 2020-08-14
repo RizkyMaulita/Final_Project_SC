@@ -102,9 +102,37 @@
                   </div>
                 </div>
                   <!-- komentar -->
-                  <!-- <div class="m-2">
-
-                  </div> -->            
+                  <div class="m-2">
+                    @forelse($pertanyaan->komentarPertanyaan as $komentar)
+                    <div class="card">
+                      <div class="card-header">
+                        {{ $komentar -> user ->name }}
+                      </div>
+                      <div class="card-body">
+                        <p class="card-text">{{ $komentar -> komentar }}</p>
+                        <!-- tombol -->
+                        <div style='display:flex;'>
+                          <!-- <a href="#" class="btn btn-primary btn-sm m-1">Komentari</a>
+                          @if($pertanyaan -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
+                            @if($komentar -> user -> id == Auth::id())
+                              <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
+                            @endif -->
+                            <form action="#" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">
+                            </form>
+                          @endif
+                        
+                        </div>
+                      </div>
+                    </div>
+                    @empty
+                      Belum Ada Komentar
+                    
+                      @endforelse
+                  
+                  </div>          
               </div> 
             </div>
             @empty
