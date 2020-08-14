@@ -14,15 +14,16 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/pertanyaans" method="POST">
+              <form role="form" action="/pertanyaans/{id}/show" method="POST">
                   @csrf
+                  @forelse ($komentar as $key => $k)
                   <div class="form-group">
                     <label for="isi"> Pertanyaan </label>
-                     <p>{!! $pertanyaan -> isi !!}</p>
+                     <p>{!! $k -> pertanyaan -> isi !!}</p>
                 </div>
                 <div class="form-group">
                     <label for="komentar"> Komentar </label>
-                     <textarea name="komentar" class="form-control my-editor">{!! $komentarpertanyaan -> komentar !!}</textarea>
+                     <textarea name="komentar" class="form-control my-editor">{!! $k -> komentar !!}</textarea>
                     @error('komentar')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror 

@@ -46,7 +46,11 @@ class KomentarPertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $komentar = komentarpertanyaan::create([
+            'komentar' => $request->komentar,
+            'user_id' => Auth::id()
+        ]); 
+        return redirect('/pertanyaans/{id}/show')->with('berhasil','Data Berhasil Ditambahkan!');
     }
 
     /**

@@ -122,6 +122,7 @@
                         @empty
                             Belum ada komentar
                         @endforelse
+                        <a class="btn btn-primary mb-2" href="{{ route('komentarpertanyaans.create') }}"> Buat Komentar baru</a>
                     </div>
                 </div>
             </div>
