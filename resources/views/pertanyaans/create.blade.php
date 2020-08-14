@@ -1,10 +1,10 @@
 @extends('adminlte.master')
 
-<!-- @push('script-unisharp-tinymce')
+@push('script-unisharp-tinymce')
 
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-@endpush -->
+@endpush
 
 @section('content')
 <div class="ml-3 mt-3">
@@ -26,9 +26,9 @@
                 </div>
                   <div class="form-group">
                     <label for="isi"> Isi Pertanyaan </label>
-                    <input type="text" class="form-control" id="isi" name="isi" value="{{ old('isi','') }}" placeholder="Masukkan isi pertanyaan">
+                    <!-- <input type="text" class="form-control" id="isi" name="isi" value="{{ old('isi','') }}" placeholder="Masukkan isi pertanyaan"> -->
                     <!-- ini dari TinyMCE Unisharp -->
-                    <!-- <textarea name="body" class="form-control my-editor">{!! old('body', $body ?? '') !!}</textarea> -->
+                    <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
                     @error('isi')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror 
@@ -51,7 +51,7 @@
 </div>
 @endsection
 <!-- yang ini scripts dari UniSharp -->
-<!-- @push('scripts')
+@push('scripts')
   <script>
     var editor_config = {
       path_absolute : "/",
@@ -88,4 +88,4 @@
 
     tinymce.init(editor_config);
   </script>
-@endpush -->
+@endpush

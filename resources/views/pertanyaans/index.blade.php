@@ -26,8 +26,9 @@
                   <div class="card-body">
                     <h4 class="card-title">{{ $pertanyaan -> judul }}</h4>
                     <br>
-                    <p class="card-text">{{ $pertanyaan -> isi }}</p>
-                    
+                    <!-- <p class="card-text">{{ $pertanyaan -> isi }}</p> -->
+                    <p class="card-text">{!! $pertanyaan -> isi !!}</p>
+
                     <!-- tags -->
                     </div>
                     <div class="mt-2 ml-1" s>
