@@ -7,6 +7,7 @@ use App\pertanyaan;
 use App\tag;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class PertanyaanController extends Controller
 {
@@ -42,7 +43,7 @@ class PertanyaanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul' => 'required|unique:pertanyaans|max:45',
+            'judul' => 'required|max:160',
             'isi' => 'required|max:255',
         ]);
         
@@ -52,7 +53,7 @@ class PertanyaanController extends Controller
 
         foreach($tags as $t){
             $ta = tag::firstOrCreate(['tag_name' => $t]);
-            $tag_ids[] = $ta->id;
+            if($t != "")$tag_ids[] = $ta->id;
         }
 
         $pertanyaan = pertanyaan::create([
@@ -89,8 +90,8 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        $question = Pertanyaan::where('id', $id)->first();
-        return view('pertanyaan.edit', compact('question'));
+        $pertanyaan = Pertanyaan::where('id', $id)->first();
+        return view('pertanyaans.edit', compact('pertanyaan'));
     }
 
     /**
@@ -102,7 +103,32 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required|max:160',
+            'isi' => 'required|max:255',
+        ]);
+        
+        $tag = $request->tags;
+        $tags = explode(",", $tag);
+        $tag_ids = [];
+
+        foreach($tags as $t){
+            $ta = tag::firstOrCreate(['tag_name' => $t]);
+            if($t != "")$tag_ids[] = $ta->id;
+        }
+
+        $pertanyaan = pertanyaan::create([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'user_id' => Auth::id()
+        ]);
+
+        $pertanyaan->tag()->sync($tag_ids);
+        
+        $user = User::find(Auth::id());
+        $user->pertanyaan()->save($pertanyaan);
+
+        return redirect('/pertanyaans')->with('berhasil','Data Berhasil Ditambahkan!');
     }
 
     /**

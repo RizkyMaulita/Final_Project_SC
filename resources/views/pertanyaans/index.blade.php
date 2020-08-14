@@ -17,41 +17,48 @@
                 <!-- <a class="btn btn-primary mb-2" href="/posts/create"> Create New Post</a> -->
                                    <!-- yang ini menggunakan nama route -->
                 <a class="btn btn-primary mb-2" href="{{ route('pertanyaans.create') }}"> Create New Post</a>
-                <table class="table table-bordered">
-                  <thead>                  
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th> Judul </th>
-                      <th> Pertanyaan </th>
-                      <th style="width: 40px">Label</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse($pertanyaans as $key => $pertanyaan)
-                        <tr>
-                            <td> {{ $key + 1 }}</td>
-                            <td> {{ $pertanyaan -> judul }} </td>
-                            <td> {{ $pertanyaan -> isi }} </td>
-                            <td style='display:flex;'> 
-                                
-                                <a href="/pertanyaans/{{ $pertanyaan->id }}" class="btn btn-info btn-im"> Show </a>
-                                <a href="/pertanyaans/{{$pertanyaan->id }}/edit" class="btn btn-default btn-im"> Edit </a>
-                                <form action="/pertanyaans/{{$pertanyaan->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="submit" value="delete" class="btn btn-danger btn-sm">
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" align="center"> Tidak ada data </td>
-                        </tr>
-                    @endforelse
+                
+                @forelse($pertanyaans as $key => $pertanyaan)
+                <div class="card">
+                  <div class="card-header">
+                    {{ $pertanyaan -> user ->name }}
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title">{{ $pertanyaan -> judul }}</h4>
+                    <br>
+                    <p class="card-text">{{ $pertanyaan -> isi }}</p>
+                    
+                    <!-- tags -->
+                    </div>
+                    <div class="mt-2 ml-1" s>
+                      <h7 >Tags :</h7>  
+                      @forelse($pertanyaan -> tag as $tag)
+                      <a href="#" class="btn btn-outline-secondary btn-sm m-1">{{$tag->tag_name}}</a>
+                      @empty
+                       Belum ada tags
+                      @endforelse
+                    </div>
+                    
+                    <!-- tombol -->
+                    <div style='display:flex;'>
+                    <a href="/pertanyaans/{{ $pertanyaan->id }}" class="btn btn-primary btn-sm m-1">Lihat</a>
+                    @if($pertanyaan -> user -> id == Auth::id())
+                    <a href="/pertanyaans/{{$pertanyaan->id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
+                    <form action="/pertanyaans/{{$pertanyaan->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">
+                    </form>
+                    @endif
+                    
+                  </div>
+                </div>
+                @empty
+                    <h3>Belum Ada Pertanyaan</h3>
+                @endforelse
+                    
                     <!-- foreach dan forelse sesungguhnya sama, 
                     tetapi kelebihan dari forelse ialah ketika data kosong, maka bisa memunculkan notif/alert  -->
-                  </tbody>
-                </table>
               </div>
               <!-- /.card-body -->
               <!-- <div class="card-footer clearfix">

@@ -28,4 +28,5 @@ class pertanyaan extends Model
     {
         return $this->belongsToMany('App\tag','pertanyaantags','pertanyaan_id','tag_id');
     }
+
 }

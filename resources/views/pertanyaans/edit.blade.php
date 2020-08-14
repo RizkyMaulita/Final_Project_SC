@@ -15,20 +15,20 @@
                   <div class="form-group">
                     <label for="judul"> Judul </label>
                     <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul', $pertanyaan->judul) }}" placeholder="Masukkan judul pertanyaan">
-                    @error('title')
+                    @error('judul')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror  
                 </div>
                   <div class="form-group">
                     <label for="isi"> Isi Pertanyaan </label>
                     <input type="text" class="form-control" id="isi" name="isi" value="{{ old('isi',$pertanyaan->isi) }}" placeholder="Masukkan isi pertanyaan">
-                    @error('title')
+                    @error('isi')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror 
                 </div>
                 <div class="form-group">
                     <label for="tags"> Tags </label>
-                    <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags','') }}" placeholder="Pisahkan dengan koma, contoh: postingan,beritaterkini,update">
+                    <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags',$pertanyaan->tags) }}" placeholder="Pisahkan dengan koma, contoh: postingan,beritaterkini,update">
                     <!-- @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror  -->
