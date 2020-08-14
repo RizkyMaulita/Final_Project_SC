@@ -79,7 +79,7 @@ class PertanyaanController extends Controller
     public function show($id)
     {
         $questions = Pertanyaan::where('id', $id)->first();
-        return view('pertanyaan/detail',compact('questions'));
+        return view('pertanyaans.show',compact('questions'));
     }
 
     /**

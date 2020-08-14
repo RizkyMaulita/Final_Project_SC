@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="mt-3 ml-3">
-    <h4> {{ $pertanyaan -> judul}} </h4>
-    <p> {{ $pertanyaan -> isi}} </p>
-    <!-- <p> Author : {{ $post -> author -> name }} </p> -->
+    <h4> {{ $questions -> judul}} </h4>
+    <p> {!! $questions -> isi !!} </p>
+    <p> Author : {{ $questions -> user -> name }} </p>
 
     <div>
         Tags: 
-        @forelse($pertanyaan -> tags as $tag)
-            <button class='btn btn-primary btn-sm'> {{ $tag -> tag_name }} </button>
+        @forelse($questions -> tag as $t)
+            <button class='btn btn-primary btn-sm'> {{ $t -> tag_name }} </button>
 
             @empty 
             No Tags
