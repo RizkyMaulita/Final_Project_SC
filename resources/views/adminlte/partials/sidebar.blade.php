@@ -19,7 +19,7 @@
 
           <!-- ini pakai eloquent relationship one to one -->
 
-          <a href="#" class="d-block"> Coba </a>
+          <a href="#" class="d-block">{{Auth::User()->name}}</a>
           
         </div>
       </div>
