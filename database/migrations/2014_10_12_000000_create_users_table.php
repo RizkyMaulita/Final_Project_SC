@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('reputasi') -> nullable();      //ini ditambahkan dari default
             $table->string('photo') ->nullable();           //ini ditambahkan dari default
             $table->timestamps();
         });

@@ -37,9 +37,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    //one to many pertanyaan
     public function pertanyaan()
     {
         return $this->hasMany('App\pertanyaan');
+    }
+
+    //one to many komentar pertanyaan
+    public function komentarPertanyaan()
+    {
+        return $this->hasMany('App\komentarpertanyaan');
+    }
+
+    //one to many komentar jawaban
+    public function komentarJawaban()
+    {
+        return $this->hasMany('App\komentarjawaban');
+    }
+
+    public function voteJawaban()
+    {
+        return $this->hasMany('App\votejawaban');
+    }
+
+    public function votePertanyaan()
+    {
+        return $this->hasMany('App\votepertanyaan');
     }
 }
