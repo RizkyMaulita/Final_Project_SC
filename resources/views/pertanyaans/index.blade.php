@@ -16,7 +16,7 @@
                                  <!-- yang ini menggunakan link  -->
                 <!-- <a class="btn btn-primary mb-2" href="/posts/create"> Create New Post</a> -->
                                    <!-- yang ini menggunakan nama route -->
-                <a class="btn btn-primary mb-2" href="{{ route('pertanyaan.create') }}"> Create New Post</a>
+                <a class="btn btn-primary mb-2" href="{{ route('pertanyaans.create') }}"> Create New Post</a>
                 <table class="table table-bordered">
                   <thead>                  
                     <tr>
@@ -35,7 +35,7 @@
                             <!-- <td> {!! $post -> body !!} </td> -->
                             <td style='display:flex;'> 
                                 <!-- <a href="/posts/{{$post->id}}" class="btn btn-info btn-im"> Show </a> -->
-                                <a href="{{ route( 'pertanyaan.show', ['post' => $post-> id]) }}" class="btn btn-info btn-im"> Show </a>
+                                <a href="{{ route( 'pertanyaans.show', ['pertanyaans' => $pertanyaan-> id]) }}" class="btn btn-info btn-im"> Show </a>
                                 <a href="/pertanyaans/{{$pertanyaans->id}}/edit" class="btn btn-default btn-im"> Edit </a>
                                 <form action="/pertanyaans/{{$pertanyaans-> id}}" method="POST">
                                     @csrf
@@ -62,7 +62,7 @@
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>
                   <li class="page-item"><a class="page-link" href="#">»</a></li>
-                </ul>
+                 </ul>
               </div> -->
             </div>
     </div>
