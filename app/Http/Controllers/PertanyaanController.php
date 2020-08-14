@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pertanyaan;
 
 class PertanyaanController extends Controller
 {
@@ -13,7 +14,8 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        //
+        $pertanyaans = Pertanyaan::all();
+        return view('pertanyaans/index',compact('pertanyaans'));
     }
 
     /**
