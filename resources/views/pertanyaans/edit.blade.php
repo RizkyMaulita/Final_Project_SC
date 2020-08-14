@@ -28,7 +28,15 @@
                 </div>
                 <div class="form-group">
                     <label for="tags"> Tags </label>
-                    <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags',$pertanyaan->tags) }}" placeholder="Pisahkan dengan koma, contoh: postingan,beritaterkini,update">
+                    <?php                    
+                    $tag = '';
+                    $tag_arr = [];
+                    foreach($pertanyaan->tag as $tags){
+                      $tag_arr [] = $tags->tag_name;
+                    }
+                    $tag=implode(',',$tag_arr); 
+                    ?>
+                    <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags', $tag) }}" placeholder="Pisahkan dengan koma, contoh: postingan,beritaterkini,update">
                     <!-- @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror  -->

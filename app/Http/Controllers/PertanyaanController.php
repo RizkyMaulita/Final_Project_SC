@@ -117,18 +117,20 @@ class PertanyaanController extends Controller
             if($t != "")$tag_ids[] = $ta->id;
         }
 
-        $pertanyaan = pertanyaan::create([
+        $tanya = pertanyaan::where('id',$id)
+            ->update([
             'judul' => $request->judul,
             'isi' => $request->isi,
             'user_id' => Auth::id()
         ]);
-
-        $pertanyaan->tag()->sync($tag_ids);
         
+        $pertanyaan = pertanyaan::find($id);
+        
+        $pertanyaan->tag()->sync($tag_ids);
         $user = User::find(Auth::id());
         $user->pertanyaan()->save($pertanyaan);
 
-        return redirect('/pertanyaans')->with('berhasil','Data Berhasil Ditambahkan!');
+        return redirect('/pertanyaans')->with('berhasil','Data Berhasil Diubah!');
     }
 
     /**
@@ -139,6 +141,10 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pertanyaan = pertanyaan::find($id);
+        $pertanyaan->tag()->sync([]);
+        $pertanyaan->delete();
+        
+        return redirect('/pertanyaans')->with('berhasil','Data Berhasil Dihapus!');
     }
 }

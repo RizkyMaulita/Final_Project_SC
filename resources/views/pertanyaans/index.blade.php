@@ -4,19 +4,19 @@
     <div class="mt-3 ml-3">
     <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Question's Table</h3>
+                <h3 class="card-title">Pertanyaan</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                  @if(session('success'))
+                  @if(session('berhasil'))
                         <div class="alert alert-success">
-                            {{ session('success')}}
+                            {{ session('berhasil')}}
                         </div>
                   @endif
                                  <!-- yang ini menggunakan link  -->
                 <!-- <a class="btn btn-primary mb-2" href="/posts/create"> Create New Post</a> -->
                                    <!-- yang ini menggunakan nama route -->
-                <a class="btn btn-primary mb-2" href="{{ route('pertanyaans.create') }}"> Create New Post</a>
+                <a class="btn btn-primary mb-2" href="{{ route('pertanyaans.create') }}"> Buat pertanyaan baru</a>
                 
                 @forelse($pertanyaans as $key => $pertanyaan)
                 <div class="card">
