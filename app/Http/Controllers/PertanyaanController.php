@@ -25,7 +25,8 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pertanyaans.create');
+    
     }
 
     /**
@@ -47,7 +48,8 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $questions = Pertanyaan::where('id', $id)->first();
+        return view('pertanyaan/detail',compact('questions'));
     }
 
     /**
@@ -58,7 +60,8 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Pertanyaan::where('id', $id)->first();
+        return view('pertanyaan.edit', compact('question'));
     }
 
     /**
