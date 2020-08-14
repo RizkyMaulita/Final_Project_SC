@@ -17,14 +17,12 @@ Route::get('/', function () {
 });
 
 Route::resource('pertanyaans','PertanyaanController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('jawabans','JawabanController');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
