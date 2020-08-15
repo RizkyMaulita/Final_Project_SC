@@ -8,9 +8,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"> {{ $questions -> judul }} </h3>
+                        <span class="float-sm-right">
+                                <a href="/pertanyaans/{{ $questions->id.',jawaban,up' }}/vote" class="m-1">
+                                <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                                <a class="btn btn-outline-secondary btn-xs">
+
+                                {{ $vote['pertanyaan'] }}
+                                </a>
+                                
+                                @if($vote['user'][ Auth::id() ] >=15)
+                                <a href="/pertanyaans/{{ $questions->id.',jawaban,down' }}/vote" class="m-1">
+                                <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
+                                @endif
+                            </span>
+                        
                     </div>
                     <div class="card-body">
                         <p> {!! $questions -> isi !!} </p>
+                        
                     </div>
                 </div>
                 <div class="card">
@@ -21,17 +36,35 @@
                         @forelse($questions->jawaban as $jawaban)
                             <div> 
                                 <div class="card">
-                                    <div class="card-header">
-                                        {{ $jawaban -> user ->name }}
+                                    <div class="card-header justify-content-between">
+                                        <span class="float-sm-left">
+                                        <h5>{{ $jawaban -> user ->name }}</h5>
+                                        
+                                        </span>
+                                        <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote['user'][ $jawaban->user->id ] }}</span>
+                                        <span class="float-sm-right">
+                        
+                                        <a href="/pertanyaans/{{ $jawaban->id.',jawaban,up' }}/vote/create" class="m-1">
+                                        <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                                        <a class="btn btn-outline-secondary btn-xs">
+
+                                            {{ $vote['jawaban'][ $jawaban->id ] }}
+                                        </a>
+                                        
+                                        @if($vote['user'][ Auth::id() ] >=15)
+                                        <a href="/pertanyaans/{{ $jawaban->id.',jawaban,down' }}/vote/create" class="m-1">
+                                        <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
+                                        @endif
+                                        </span>
+                                        
                                     </div>
                                     <div class=" card-body">
                                         <p class=" card-text">{!! $jawaban -> jawaban !!}</p>
                                         <!-- tombol -->
                                         <div style='display:flex;'>
-                                        @if($questions -> user -> id == Auth::id() || $jawaban -> user -> id == Auth::id())
-                                            @if($jawaban -> user -> id == Auth::id())
+                                        @if($jawaban -> user -> id == Auth::id())
                                             <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
-                                            @endif
+                                
                                             <form action="/jawabans/{{$jawaban -> id}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
