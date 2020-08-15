@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\komentarjawaban;
 use App\komentarpertanyaan;
 use Illuminate\Http\Request;
 use App\pertanyaan;
