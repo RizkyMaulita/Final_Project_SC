@@ -25,7 +25,9 @@ class JawabanController extends Controller
         $tayo = pertanyaan::find($tany);
         $tayo->jawaban_tepat_id = $id;
         $tayo->save();
-        $questions = pertanyaan::find($id);
+
+        $idx = $jawab->pertanyaan->id;
+        $questions = pertanyaan::find($idx);
         $jawaban1 = jawaban::get();
         $user1 = User:: get();
 
