@@ -9,14 +9,17 @@
                     <div class="card-header">
                         <h3 class="card-title"> {{ $questions -> judul }} </h3>
                         <span class="float-sm-right">
+                                @if($questions->user->id != Auth::id())
+
                                 <a href="/pertanyaans/{{ $questions->id.',jawaban,up' }}/vote" class="m-1">
                                 <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                                @endif
                                 <a class="btn btn-outline-secondary btn-xs">
 
                                 {{ $vote['pertanyaan'] }}
                                 </a>
                                 
-                                @if($vote['user'][ Auth::id() ] >=15)
+                                @if($vote['user'][ Auth::id() ] >=15 && $questions->user->id != Auth::id())
                                 <a href="/pertanyaans/{{ $questions->id.',jawaban,down' }}/vote" class="m-1">
                                 <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
                                 @endif
@@ -43,15 +46,16 @@
                                         </span>
                                         <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote['user'][ $jawaban->user->id ] }}</span>
                                         <span class="float-sm-right">
-                        
+                                        @if($jawaban->user->id != Auth::id())
                                         <a href="/pertanyaans/{{ $jawaban->id.',jawaban,up' }}/vote/create" class="m-1">
                                         <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                                        @endif
                                         <a class="btn btn-outline-secondary btn-xs">
 
                                             {{ $vote['jawaban'][ $jawaban->id ] }}
                                         </a>
                                         
-                                        @if($vote['user'][ Auth::id() ] >=15)
+                                        @if($vote['user'][ Auth::id() ] >=15 && $jawaban->user->id != Auth::id())
                                         <a href="/pertanyaans/{{ $jawaban->id.',jawaban,down' }}/vote/create" class="m-1">
                                         <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
                                         @endif

@@ -22,15 +22,16 @@
                 </span>
                 <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote[2][ $pertanyaan->user->id ] }}</span>
                 <span class="float-sm-right">
- 
+                  @if($pertanyaan -> user -> id != Auth::id())
                   <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,up' }}/vote" class="m-1">
                   <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                  @endif
                   <a class="btn btn-outline-secondary btn-xs">
 
                     {{ $vote[0][ $pertanyaan->id ] }}
                   </a>
                   
-                  @if($vote[2][ Auth::id() ] >=15)
+                  @if($vote[2][ Auth::id() ] >=15 && $pertanyaan -> user -> id != Auth::id())
                   <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,down' }}/vote" class="m-1">
                   <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
                   @endif
@@ -97,13 +98,15 @@
                                 <i class="fa fa-star text-orange" aria-hidden="true"></i>
                               </a>  
                             @endif
+                              @if($jawaban->user->id != Auth::id())
                               <a href="/pertanyaans/{{ $jawaban->id.',pertanyaans,up' }}/vote/create" class="m-1">
+                              @endif
                               <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
                               <a class="btn btn-outline-secondary btn-xs">
 
                                 {{ $vote[1][ $jawaban->id ] }}
                               </a>
-                              @if($vote[2][ Auth::id() ] >=15)
+                              @if($vote[2][ Auth::id() ] >=15 && $jawaban->user->id != Auth::id())
                               <a href="/pertanyaans/{{ $jawaban->id.',pertanyaans,down' }}/vote/create" class="m-1">
                               <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
                               @endif
