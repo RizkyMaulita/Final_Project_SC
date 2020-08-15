@@ -67,11 +67,7 @@ class PertanyaanController extends Controller
         
         $user = User::find(Auth::id());
         $user->pertanyaan()->save($pertanyaan);
-
-        $komentar = komentarpertanyaan::create([
-            'komentar' => $request->komentar,
-            'user_id' => Auth::id()
-        ]); 
+         
         return redirect('/pertanyaans')->with('berhasil','Data Berhasil Ditambahkan!');
     }
 
