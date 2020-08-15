@@ -18,7 +18,9 @@
                   @csrf
                   @method('PUT')
                 <div class="card-body">
-                  <div class="form-group">
+                <div class="form-group">
+                    <h4>{!! $jawaban -> pertanyaan -> judul !!}</h4>
+                    <p>{!! $jawaban -> pertanyaan -> isi !!}</p>
                 </div>
                   <div class="form-group">
                     <label for="jawaban"> Jawaban Anda </label>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\jawaban;
+use App\pertanyaan;
+use App\votejawaban;
 use App\votepertanyaan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -69,7 +73,10 @@ class VoteController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
+
+      
     }
 
     /**

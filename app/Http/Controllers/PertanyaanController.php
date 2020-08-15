@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\pertanyaan;
 use App\tag;
 use App\User;
+use App\jawaban;
 use App\votejawaban;
 use App\votepertanyaan;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +25,33 @@ class PertanyaanController extends Controller
     public function index()
     {
         $pertanyaans = Pertanyaan::orderBy('created_at','desc')->get();
-        $pertanyaan = votepertanyaan::get();
-        $jawaban = votejawaban::get();
+        $pertanyaan = pertanyaan::get();
+        $jawaban = jawaban::get();
+        $user1 = User:: get();
+
+        $user = [];
+        foreach($user1 as $use){
+            $up = $use->votePertanyaan->where('vote','up')->count();
+            $down = $use->votePertanyaan->where('vote','down')->count();
+            $up2 = $use->voteJawaban->where('vote','up')->count();
+            $down2 = $use->voteJawaban->where('vote','down')->count();
+            $rep = ($up + $up2) * 10 - ($down +$down2 );
+            $user[$use->id] = $rep;
+            //dd($rep);
+        }
+
+        $pertanyaan = [];
+        foreach($user1 as $use){
+            $up = $use->votePertanyaan->where('vote','up')->count();
+            $down = $use->votePertanyaan->where('vote','down')->count();
+            $up2 = $use->voteJawaban->where('vote','up')->count();
+            $down2 = $use->voteJawaban->where('vote','down')->count();
+            $rep = ($up + $up2) * 10 - ($down +$down2 );
+            $user[] = $rep;
+            //dd($rep);
+        }
+        //dd($user);
+        
         $vote =[
             'pertanyaan'=> $pertanyaan,
             'jawaban' => $jawaban

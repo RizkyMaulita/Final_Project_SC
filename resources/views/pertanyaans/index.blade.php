@@ -19,7 +19,7 @@
                 {{ $pertanyaan -> user ->name }}
                 <div class="float-sm-right">
  
-                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,up' }}/vote" class="btn btn-outline-secondary btn-sm m-1">
+                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,up' }}/vote" class="">
                   <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
                   <a class="btn btn-outline-secondary btn-sm m-1">
                     10
