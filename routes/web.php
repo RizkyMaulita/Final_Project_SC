@@ -30,7 +30,7 @@ Route::resource('pertanyaans.komentarpertanyaans','KomentarPertanyaanController'
 Route::resource('jawabans.komentarjawabans','KomentarJawabanController');
 Route::resource('pertanyaans.jawabans','JawabanController');
 Route::resource('pertanyaans.vote','VoteController');
-
+Route::resource('komentarjawabans','KomentarJawabanController');
 // Route::put('pertanyaans','KomentarPertanyaanController@store');
 //Route::put('/pertanyaans/{id}/show', 'KomentarPertanyaanController@create');
 

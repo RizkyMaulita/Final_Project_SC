@@ -79,7 +79,8 @@ class KomentarJawabanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $komentar = komentarjawaban::find($id);
+        return view('komentarjawabans.edit', compact('komentar'));
     }
 
     /**
@@ -91,7 +92,13 @@ class KomentarJawabanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $komentar = komentarjawaban::where('id',$id)
+        ->update([
+            'komentar' => $request -> komentar,
+        ]);
+        $comment = komentarjawaban::find($id);
+        $idd = $comment->jawaban->pertanyaan->id;
+        return redirect("/pertanyaans/$idd") -> with('Success', 'Komentar telah diedit !');
     }
 
     /**
@@ -102,7 +109,10 @@ class KomentarJawabanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = komentarjawaban::find($id);
+        $idd = $comment -> jawaban -> pertanyaan -> id;
+        $komentar = komentarjawaban::destroy($id);
+        return redirect("/pertanyaans/$idd")->with('berhasil','Komentar Anda Berhasil Dihapus!');
     }
 }
 

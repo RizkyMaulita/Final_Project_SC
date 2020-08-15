@@ -118,6 +118,6 @@ class JawabanController extends Controller
         // $jawaban->delete();
         $answer = Jawaban ::find($id);
         $jawaban = Jawaban::destroy($id);
-        return redirect("/pertanyaans/$answer->pertanyaan_id")->with('berhasil','Data Berhasil Dihapus!');
+        return redirect("/pertanyaans/$answer->pertanyaan_id")->with('berhasil','Jawaban Anda Berhasil Dihapus!');
     }
 }
