@@ -19,7 +19,7 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $pertanyaans = Pertanyaan::all();
+        $pertanyaans = Pertanyaan::orderBy('created_at','desc')->get();
         //dd($pertanyaans);
         return view('pertanyaans.index',compact('pertanyaans'));
     }
@@ -67,7 +67,7 @@ class PertanyaanController extends Controller
         
         $user = User::find(Auth::id());
         $user->pertanyaan()->save($pertanyaan);
-         
+
         return redirect('/pertanyaans')->with('berhasil','Data Berhasil Ditambahkan!');
     }
 

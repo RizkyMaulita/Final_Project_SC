@@ -44,4 +44,10 @@ class pertanyaan extends Model
         return $this->hasMany('App\votepertanyaan');
     }
 
+    public function newsKomentar()
+    {   
+        
+        return komentarpertanyaan::orderBy('created_at','desc')->get();
+    }
+
 }
