@@ -3,6 +3,7 @@
 @section('content')
     <div class="container-fluid mt-3">
         <div class="row">
+
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
@@ -18,16 +19,15 @@
                     </div>
                     <div class="card-body">
                         @forelse($questions->jawaban as $jawaban)
-                            <div>
+                            <div> 
                                 <div class="card">
                                     <div class="card-header">
                                         {{ $jawaban -> user ->name }}
                                     </div>
-                                    <div class=" card card-body">
-                                        <p class=" card card-text">{!! $jawaban -> jawaban !!}</p>
+                                    <div class=" card-body">
+                                        <p class=" card-text">{!! $jawaban -> jawaban !!}</p>
                                         <!-- tombol -->
                                         <div style='display:flex;'>
-                                        <a href="/jawabans/{{ $jawaban -> id }}/komentarjawabans/create" class="btn btn-primary btn-sm m-1">Komentar</a>
                                         @if($questions -> user -> id == Auth::id() || $jawaban -> user -> id == Auth::id())
                                             @if($jawaban -> user -> id == Auth::id())
                                             <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
@@ -39,16 +39,22 @@
                                             </form>
                                         @endif
                                         </div>
-                                        <div class=" card card-text">
-                                                <!-- Isi Komentar -->
-                                            @forelse($jawaban->komentarJawaban as $komentar)
-                                            <div>
-                                                <div class="card p-1">
-                                                    <h6> {{ $komentar -> user ->name }} </h6>
+                                        <!-- <div class=" card-text"> -->
+                                                <div class=" card"> 
+                                                    <div class="card-header">
+                                                        <h3 class="card-title"> Komentar </h3>
+                                                        <div class="card-tools">
+                                                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i> </button>
+                                                    </div>
+                                                </div>
+                                                @forelse($jawaban->komentarJawaban as $komentar)
+                                                <div class="card-body">
+                                                    <div class="card p-1">
+                                                        <h6> {{ $komentar -> user ->name }} </h6>
                                                         <p class="card-text">{!! $komentar -> komentar !!}</p>
                                                         <!-- tombol -->
                                                         <div style='display:flex;'>
-                                                        @if($komentar -> jawaban -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
+                                                            @if($komentar -> jawaban -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
                                                             @if($komentar -> user -> id == Auth::id())
                                                             <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
                                                             @endif
@@ -59,26 +65,27 @@
                                                             </form>
                                                         @endif
                                                         </div>
-                                                    
+                                                    </div>
                                                 </div>
+                                                @empty
+                                                <label align='center'> Belum ada komentar </label>
+                                                @endforelse
+                                                <a href="/jawabans/{{ $jawaban -> id }}/komentarjawabans/create" class="btn btn-primary btn-sm m-1">Komentar</a>
                                             </div>
-                                            @empty
-                                                Belum ada komentar
-                                            @endforelse
-                                        </div>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>
                             @empty
                                 Belum ada jawaban
                             @endforelse
-                        <a class="btn btn-primary mb-2" href="{{ $questions -> id }}/jawabans/create"> Buat Jawaban baru</a>
+                            <a class="btn btn-primary mb-2" href="{{ $questions -> id }}/jawabans/create"> Buat Jawaban baru</a>
                     </div>
                 </div>  
             </div>
           
             <div class="col-md-3">
-            <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"> Informasi </h3>
                         <div class="card-tools">
