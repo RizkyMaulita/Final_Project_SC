@@ -67,6 +67,7 @@
                                         <!-- tombol -->
                                         <div style='display:flex;'>
                                         @if($jawaban -> user -> id == Auth::id())
+                                            <a href="/pertanyaans/{{ $jawaban -> id }}/jawabans" class="btn btn-primary btn-sm m-1">Tepat</a>
                                             <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
                                 
                                             <form action="/jawabans/{{$jawaban -> id}}" method="POST">

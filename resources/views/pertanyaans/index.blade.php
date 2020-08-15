@@ -93,15 +93,16 @@
                             </span>
                             <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote[2][ $jawaban->user->id ] }}</span>
                             <span class="float-sm-right">
-                            @if($pertanyaan->j_tepat != NULL)
+                            @if($pertanyaan->jawaban_tepat_id != NULL)
                               <a class="m-1">
                                 <i class="fa fa-star text-orange" aria-hidden="true"></i>
                               </a>  
                             @endif
                               @if($jawaban->user->id != Auth::id())
                               <a href="/pertanyaans/{{ $jawaban->id.',pertanyaans,up' }}/vote/create" class="m-1">
-                              @endif
+                              
                               <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                              @endif
                               <a class="btn btn-outline-secondary btn-xs">
 
                                 {{ $vote[1][ $jawaban->id ] }}

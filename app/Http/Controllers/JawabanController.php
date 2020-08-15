@@ -17,9 +17,57 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $jawab = jawaban::find($id);
+        $tany = $jawab->pertanyaan->id;
+        $jawab->save();
+        $tayo = pertanyaan::find($tany);
+        $tayo->jawaban_tepat_id = $id;
+        $tayo->save();
+        $questions = pertanyaan::find($id);
+        $jawaban1 = jawaban::get();
+        $user1 = User:: get();
+
+        $user = [];
+        foreach($user1 as $use){
+            $tampungan = 0;
+            foreach($use->pertanyaan as $tanya){
+                $up = $tanya->votePertanyaan->where('vote','up')->count();
+                $down = $tanya->votePertanyaan->where('vote','down')->count();
+                $tampungan += ($up * 10)-$down;
+            }
+
+            foreach($use->jawaban as $jawab){
+            
+                $up = $jawab->voteJawaban->where('vote','up')->count();
+                $down = $jawab->voteJawaban->where('vote','down')->count();
+                $tampungan += ($up * 10) - $down;
+            }
+            //dd($tampungan);
+            $user[$use->id] = $tampungan;
+            //dd($rep);
+        }
+
+        $jawaban = [];
+        foreach($jawaban1 as $jawab){
+            
+            $up = $jawab->voteJawaban->where('vote','up')->count();
+            $down = $jawab->voteJawaban->where('vote','down')->count();
+            $rep = ($up) - ($down);
+            $jawaban[$jawab->id] = $rep;
+        }
+
+        $up = $questions->votePertanyaan->where('vote','up')->count();
+        $down = $questions->votePertanyaan->where('vote','down')->count();
+        $rep = ($up) - ($down);
+        $pertanyaan = $rep;
+ 
+        
+        $vote['pertanyaan'] = $pertanyaan;
+        $vote['jawaban'] = $jawaban;
+        $vote['user'] = $user;
+        return view('pertanyaans.show',compact('questions','vote'));
     }
 
     /**
