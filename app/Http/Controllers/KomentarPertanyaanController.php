@@ -53,7 +53,7 @@ class KomentarPertanyaanController extends Controller
             'user_id' => Auth::id(),
             'pertanyaan_id' => $id
         ]); 
-        return redirect("/pertanyaans/$id")->with('berhasil','Komentar Berhasil Ditambahkan!');
+        return redirect("/pertanyaans/$id")->with('berhasil','Komentar Anda Berhasil Ditambahkan!');
     }
 
     /**
@@ -75,7 +75,8 @@ class KomentarPertanyaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $komentar = komentarpertanyaan::find($id);
+        return view('komentarpertanyaans.edit', compact('komentar'));
     }
 
     /**
@@ -87,7 +88,13 @@ class KomentarPertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $komentar = komentarpertanyaan::where('id',$id)
+        ->update([
+            'komentar' => $request -> komentar,
+        ]);
+        $comment = komentarpertanyaan::find($id);
+        $idd = $comment->pertanyaan->id;
+        return redirect("/pertanyaans/$idd") -> with('Success', 'Komentar Anda telah diedit !');
     }
 
     /**
@@ -98,6 +105,9 @@ class KomentarPertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = komentarpertanyaan::find($id);
+        $idd = $comment -> pertanyaan -> id;
+        $komentar = komentarpertanyaan::destroy($id);
+        return redirect("/pertanyaans/$idd")->with('berhasil','Komentar Anda Berhasil Dihapus!');
     }
 }

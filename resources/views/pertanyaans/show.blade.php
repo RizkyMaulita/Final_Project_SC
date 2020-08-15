@@ -135,9 +135,9 @@
                                         <div style='display:flex;'>
                                         @if($questions -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
                                             @if($komentar -> user -> id == Auth::id())
-                                            <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
+                                            <a href="/komentarpertanyaans/{{ $komentar -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
                                             @endif
-                                            <form action="#" method="POST">
+                                            <form action="/komentarpertanyaans/{{ $komentar -> id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">

@@ -57,7 +57,7 @@ class KomentarJawabanController extends Controller
         ]); 
 
         $idd = $komentar->jawaban->pertanyaan->id;
-        return redirect("/pertanyaans/$idd")->with('berhasil','Komentar Berhasil Ditambahkan!');
+        return redirect("/pertanyaans/$idd")->with('berhasil','Komentar Anda Berhasil Ditambahkan!');
     }
 
     /**
@@ -98,7 +98,7 @@ class KomentarJawabanController extends Controller
         ]);
         $comment = komentarjawaban::find($id);
         $idd = $comment->jawaban->pertanyaan->id;
-        return redirect("/pertanyaans/$idd") -> with('Success', 'Komentar telah diedit !');
+        return redirect("/pertanyaans/$idd") -> with('Success', 'Komentar Anda telah diedit !');
     }
 
     /**
