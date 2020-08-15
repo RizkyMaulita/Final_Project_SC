@@ -56,8 +56,8 @@ class KomentarJawabanController extends Controller
             'jawaban_id' => $id
         ]); 
 
-        //$idd = $komentar->jawaban->pertanyaan->id;
-        return redirect("/pertanyaans/$id")->with('berhasil','Komentar Berhasil Ditambahkan!');
+        $idd = $komentar->jawaban->pertanyaan->id;
+        return redirect("/pertanyaans/$idd")->with('berhasil','Komentar Berhasil Ditambahkan!');
     }
 
     /**
