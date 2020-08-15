@@ -235,8 +235,9 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        
-        $apasih= pertanyaan::destroy($id);
+        $pertanyaan = pertanyaan::find($id);
+        $pertanyaan->tag()->sync([]);
+        $pertanyaan->delete();
         
         return redirect('/pertanyaans')->with('berhasil','Data Berhasil Dihapus!');
     }
