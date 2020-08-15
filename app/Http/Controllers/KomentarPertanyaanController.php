@@ -53,7 +53,7 @@ class KomentarPertanyaanController extends Controller
             'user_id' => Auth::id(),
             'pertanyaan_id' => $id
         ]); 
-        return redirect("/pertanyaans/$id")->with('berhasil','Data Berhasil Ditambahkan!');
+        return redirect("/pertanyaans/$id")->with('berhasil','Komentar Berhasil Ditambahkan!');
     }
 
     /**

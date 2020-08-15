@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\jawaban;
+use App\User;
+use App\pertanyaan;
+use App\pertanyaantag;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class JawabanController extends Controller
 {
@@ -21,9 +27,10 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $pertanyaan = pertanyaan::find($id);
+        return view('jawabans.create',compact('pertanyaan'));
     }
 
     /**
@@ -32,9 +39,14 @@ class JawabanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $jawaban = jawaban::create([
+            'jawaban' => $request->jawaban,
+            'user_id' => Auth::id(),
+            'pertanyaan_id' => $id
+        ]); 
+        return redirect("/pertanyaans/$id")->with('berhasil','Jawaban Berhasil Ditambahkan!');
     }
 
     /**
