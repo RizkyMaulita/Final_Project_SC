@@ -14,13 +14,11 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/pertanyaans/{{$pertanyaan -> id}}/jawabans/{{$jawaban -> id}}" method="POST">
+              <form role="form" action="'/pertanyaans/{{$pertanyaan -> $jawaban}}/jawabans/{{$jawaban -> id}}" method="POST">
                   @csrf
                   @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                  <h4>{!! $pertanyaan -> judul !!}</h4>
-                   <p>{!! $pertanyaan -> isi !!}</p>   
                 </div>
                   <div class="form-group">
                     <label for="jawaban"> Jawaban Anda </label>

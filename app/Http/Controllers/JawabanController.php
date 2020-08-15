@@ -73,7 +73,9 @@ class JawabanController extends Controller
      */
    public function edit($id)
     {
+        // $pertanyaan = Pertanyaan::find($id1);
         $jawaban = Jawaban::find($id);
+        $pertanyaan = Pertanyaan::find($jawaban);
         return view('jawabans.edit', compact('jawaban'));
     }
  
@@ -92,8 +94,13 @@ class JawabanController extends Controller
             'user_id' => Auth::id(),
             'pertanyaan_id' => $id1
         ]);
-
-        return redirect("/pertanyaans/$id1/jawabans/$id")-> with('Success', 'Jawaban berhasil di edit');
+        $answer = Jawaban::find($id);
+        $pertanyaan = Pertanyaan::find($answer -> jawaban_id);
+        // $user = User::find(Auth::id());
+        // $user->pertanyaan()->jawaban()->save($jawaban);
+        // return view ('/pertanyaans/show');
+        return redirect('/pertanyaans/$pertanyaan/jawabans/$id') -> with('Success','Jawaban telah di edit');
+        // return redirect("/pertanyaans/$id1/jawabans/$id")-> with('Success', 'Jawaban berhasil di edit');
     }
 
     /**
