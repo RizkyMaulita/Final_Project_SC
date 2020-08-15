@@ -1,13 +1,7 @@
 @extends('adminlte.master')
 
 @section('content')
-  <div class="mt-3 ml-3">
-    <div class="card">
-      <div class="card-header">
-      <h3 class="card-title">Pertanyaan</h3>
-      </div>
-        <!-- /.card-header -->
-      <div class="card-body">
+<div class="mt-3 ml-3">
             @if(session('berhasil'))
                   <div class="alert alert-success">
                       {{ session('berhasil')}}
@@ -55,22 +49,15 @@
                 @endif
               
               </div>
-              <!-- nav -->
-              <div class="card mt-3 ml-2 mr-2">
-                <div>
-                  <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">Jawaban</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Komentar</a>
-                    </li>
-                  </ul>
-                </div>
+                <div class="row">
                 <!-- jawaban -->
-                <div>
-                  <div class="m-2">
-                    @forelse($pertanyaan->jawaban as $jawaban)
+                  <div class="m-2 col-md">
+                    <h6>Jawaban :</h6>
+                    @if($pertanyaan->jawaban->count() > 0)
+                      <?php 
+                      $s = $pertanyaan->jawaban->count();
+                      $jawaban = $pertanyaan->jawaban[$s-1];
+                      ?>
                     <div class="card">
                       <div class="card-header">
                         {{ $jawaban -> user ->name }}
@@ -94,29 +81,33 @@
                         </div>
                       </div>
                     </div>
-                    @empty
+                    @else
                       Belum Ada Jawaban
                     
-                      @endforelse
+                      @endif
                   
                   </div>
-                </div>
-                  <!-- komentar -->
-                  <div class="m-2">
-                    @forelse($pertanyaan->komentarPertanyaan as $komentar)
-                    <div class="card">
-                      <div class="card-header">
-                        {{ $komentar -> user ->name }}
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">{{ $komentar -> komentar }}</p>
-                        <!-- tombol -->
-                        <div style='display:flex;'>
-                          <!-- <a href="#" class="btn btn-primary btn-sm m-1">Komentari</a>
+                
+                <!-- komentar -->
+                  <div class="m-2 col-md">
+                    <h6>Komentar :</h6>
+                    @if($pertanyaan->komentarPertanyaan->count() > 0)
+                      <?php 
+                      $s = $pertanyaan->komentarPertanyaan->count();
+                      $komentar = $pertanyaan->komentarPertanyaan[$s-1];
+                      ?>
+                      <div class="card">
+                        <div class="card-header">
+                          {{ $komentar -> user ->name }}
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text">{!! $komentar -> komentar !!}</p>
+                          <!-- tombol -->
+                          <div style='display:flex;'>
                           @if($pertanyaan -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
                             @if($komentar -> user -> id == Auth::id())
                               <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
-                            @endif -->
+                            @endif
                             <form action="#" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -127,14 +118,14 @@
                         </div>
                       </div>
                     </div>
-                    @empty
+                    @else
                       Belum Ada Komentar
                     
-                      @endforelse
+                      @endif
                   
                   </div>          
-              </div> 
-            </div>
+                </div>
+              </div>
             @empty
                 <h3>Belum Ada Pertanyaan</h3>
             
@@ -142,9 +133,6 @@
               
               <!-- foreach dan forelse sesungguhnya sama, 
               tetapi kelebihan dari forelse ialah ketika data kosong, maka bisa memunculkan notif/alert  -->
-        
-        
-      </div>
-    </div>
-  </div>
+<div>
+
 @endsection

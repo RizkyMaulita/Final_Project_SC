@@ -8,34 +8,36 @@
 
 @section('content')
 <div class="ml-3 mt-3">
-<div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title"> Buat Jawaban </h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" action="/pertanyaans/{id}/show" method="POST">
-                  @csrf
-                  @forelse ($komentar as $key => $k)
-                  <div class="form-group">
-                    <label for="isi"> Pertanyaan </label>
-                     <p>{!! $k -> pertanyaan -> isi !!}</p>
-                </div>
-                <div class="form-group">
-                    <label for="komentar"> Komentar </label>
-                     <textarea name="komentar" class="form-control my-editor">{!! $k -> komentar !!}</textarea>
-                    @error('komentar')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror 
-                </div>
-             </div>
-                <!-- /.card-body -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title"> Komentari Pertanyaan </h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form" action="/pertanyaans/{{ $pertanyaan -> id }}/komentarpertanyaans" method="POST">
+        @csrf
+      <div class="card-body">
+        <div class="form-group">
+        <h4>{!! $pertanyaan -> judul !!}</h4>
+          <p>{!! $pertanyaan -> isi !!}</p>  
+        </div>
+        <div class="form-group">
+          <label for="komentar"> Komentar Anda </label>
+          <!-- <input type="text" class="form-control" id="isi" name="isi" value="{{ old('isi','') }}" placeholder="Masukkan isi pertanyaan"> -->
+          <!-- ini dari TinyMCE Unisharp -->
+          <textarea name="komentar" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+          @error('isi')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror 
+        </div>
+      </div>
+      <!-- /.card-body -->
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Create</button>
-                </div>
-              </form>
-            </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Buat Komentar</button>
+      </div>
+    </form>
+  </div>
 </div>
 @endsection
 <!-- yang ini scripts dari UniSharp -->

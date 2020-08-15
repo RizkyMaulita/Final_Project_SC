@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\komentarpertanyaan;
 use App\User;
 use App\pertanyaan;
+use App\pertanyaantag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -20,21 +21,22 @@ class KomentarPertanyaanController extends Controller
     {
         
     }
-    public function index()
-    {
-        $komentar = komentarpertanyaan::all();
-        //dd($pertanyaans);
-        return view('pertanyaans.index',compact('komentar'));
-    }
+    // public function index()
+    // {
+    //     $komentar = komentarpertanyaan::all();
+    //     //dd($komentar);
+    //     return view('pertanyaans.index',compact('komentar'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('komentarpertanyaans.create');
+        $pertanyaan = pertanyaan::find($id);
+        return view('komentarpertanyaans.create',compact('pertanyaan'));
 
     }
 
@@ -44,13 +46,14 @@ class KomentarPertanyaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $komentar = komentarpertanyaan::create([
             'komentar' => $request->komentar,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'pertanyaan_id' => $id
         ]); 
-        return redirect('/pertanyaans/{id}/show')->with('berhasil','Data Berhasil Ditambahkan!');
+        return redirect("/pertanyaans/$id")->with('berhasil','Data Berhasil Ditambahkan!');
     }
 
     /**

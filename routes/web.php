@@ -16,12 +16,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+//ini route buat jawaban
+
+//akhir route jawaban
+
 Route::resource('pertanyaans','PertanyaanController');
-Route::resource('jawabans','JawabanController');
-Route::resource('komentarpertanyaans','KomentarPertanyaanController');
-Route::get('pertanyaans/komentar', 'KomentarPertanyaanController@create');
+//Route::resource('jawabans','JawabanController');
+Route::resource('pertanyaans.komentarpertanyaans','KomentarPertanyaanController');
+
 // Route::put('pertanyaans','KomentarPertanyaanController@store');
-Route::put('/pertanyaans/{id}/show', 'KomentarPertanyaanController@create');
+//Route::put('/pertanyaans/{id}/show', 'KomentarPertanyaanController@create');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

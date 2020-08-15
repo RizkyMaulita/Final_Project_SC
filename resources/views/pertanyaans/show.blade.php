@@ -95,12 +95,9 @@
                     <div class="card-body"> 
                     @forelse($questions->komentarPertanyaan as $komentar)
                             <div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        {{ $komentar -> user ->name }}
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $komentar -> komentar }}</p>
+                                <div class="card p-1">
+                                       <h6> {{ $komentar -> user ->name }} </h6>
+                                        <p class="card-text">{!! $komentar -> komentar !!}</p>
                                         <!-- tombol -->
                                         <div style='display:flex;'>
                                         @if($questions -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
@@ -115,14 +112,14 @@
                                         @endif
                                         
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
 
                         @empty
                             Belum ada komentar
                         @endforelse
-                        <a class="btn btn-primary mb-2" href="{{ route('komentarpertanyaans.create') }}"> Buat Komentar baru</a>
+                        <a class="btn btn-primary mb-2" href="{{ $questions -> id }}/komentarpertanyaans/create"> Buat Komentar baru</a>
                     </div>
                 </div>
             </div>
