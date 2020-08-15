@@ -32,7 +32,7 @@
                                             @if($jawaban -> user -> id == Auth::id())
                                             <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
                                             @endif
-                                            <form action="#" method="POST">
+                                            <form action="/jawabans/{{$jawaban -> id}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="submit" value="hapus" class="btn btn-danger btn-sm m-1">

@@ -111,6 +111,13 @@ class JawabanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $answer = Jawaban::find($id);
+        // $pertanyaan = Pertanyaan::find($answer -> pertanyaan_id);
+        // $answer -> delete();
+        // $pertanyaan = Pertanyaan::find($jawaban -> pertanyaan_id);
+        // $jawaban->delete();
+        $answer = Jawaban ::find($id);
+        $jawaban = Jawaban::destroy($id);
+        return redirect("/pertanyaans/$answer->pertanyaan_id")->with('berhasil','Data Berhasil Dihapus!');
     }
 }
