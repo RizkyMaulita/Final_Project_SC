@@ -27,6 +27,7 @@ Route::get('/', function () {
 Route::resource('pertanyaans','PertanyaanController');
 Route::resource('jawabans','JawabanController');
 Route::resource('pertanyaans.komentarpertanyaans','KomentarPertanyaanController');
+Route::resource('jawabans.komentarjawabans','KomentarJawabanController');
 Route::resource('pertanyaans.jawabans','JawabanController');
 Route::resource('pertanyaans.vote','VoteController');
 
