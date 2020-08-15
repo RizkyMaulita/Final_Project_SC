@@ -20,7 +20,7 @@
           <!-- ini pakai eloquent relationship one to one -->
 
           <a href="#" class="d-block">{{Auth::User()->name}}</a>
-          <span class="text-sm text-gray"> &nbsp &nbsp &nbsp Reputasi : {{ $vote[2][ Auth::User()->id ] }}</span>
+          <!--  -->
 
         </div>
       </div>

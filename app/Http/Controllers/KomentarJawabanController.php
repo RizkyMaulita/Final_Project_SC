@@ -55,6 +55,8 @@ class KomentarJawabanController extends Controller
             'user_id' => Auth::id(),
             'jawaban_id' => $id
         ]); 
+
+        //$idd = $komentar->jawaban->pertanyaan->id;
         return redirect("/pertanyaans/$id")->with('berhasil','Komentar Berhasil Ditambahkan!');
     }
 

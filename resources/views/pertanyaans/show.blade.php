@@ -48,7 +48,7 @@
                                                         <p class="card-text">{!! $komentar -> komentar !!}</p>
                                                         <!-- tombol -->
                                                         <div style='display:flex;'>
-                                                        @if($jawaban -> jawaban -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
+                                                        @if($komentar -> jawaban -> user -> id == Auth::id() || $komentar -> user -> id == Auth::id())
                                                             @if($komentar -> user -> id == Auth::id())
                                                             <a href="#" class="btn btn-primary btn-sm m-1">Ubah</a>
                                                             @endif
