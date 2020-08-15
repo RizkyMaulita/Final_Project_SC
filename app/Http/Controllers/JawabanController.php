@@ -55,9 +55,14 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $id1)
     {
-        //
+        // $jawaban = Jawaban::where([
+        //     'id' => $id,
+        //     'user_id' => Auth::id(),
+        //     'pertanyaan_id' => $id1
+        // ]) -> first();
+        // return view('jawabans.show', compact('jawaban'));
     }
 
     /**
@@ -66,11 +71,16 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+   public function edit($id1, $id)
     {
-        //
+        $jawaban = Jawaban::where([
+            'id' => $id,
+            'user_id' => Auth::id(),
+            'pertanyaan_id' => $id1
+        ])->first();
+        return view('jawabans.edit', compact('jawaban'));
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -78,9 +88,16 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id1, $id)
     {
-        //
+        $jawaban = Jawaban::where('id',$id)
+        -> update([
+            'jawaban' => $request -> jawaban,
+            'user_id' => Auth::id(),
+            'pertanyaan_id' => $id1
+        ]);
+
+        return redirect("/pertanyaans/$id1/jawabans/$id")-> with('Success', 'Jawaban berhasil di edit');
     }
 
     /**

@@ -10,42 +10,24 @@
 <div class="ml-3 mt-3">
 <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title"> Jawaban's Edit {{$pertanyaan -> id}}</h3>
+                <h3 class="card-title"> Jawaban's Edit</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/pertanyaans/{{$pertanyaan -> id}}/jawabans" method="POST">
+              <form role="form" action="/pertanyaans/{{$pertanyaan -> id}}/jawabans/{{$jawaban -> id}}" method="POST">
                   @csrf
                   @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="judul"> Judul </label>
-                    <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul', $pertanyaan->judul) }}" placeholder="Masukkan judul pertanyaan">
-                    @error('judul')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror  
+                  <h4>{!! $pertanyaan -> judul !!}</h4>
+                   <p>{!! $pertanyaan -> isi !!}</p>   
                 </div>
                   <div class="form-group">
-                    <label for="isi"> Isi Pertanyaan </label>
-                     <textarea name="isi" class="form-control my-editor">{!! $pertanyaan -> isi !!}</textarea>
-                    @error('isi')
+                    <label for="jawaban"> Jawaban Anda </label>
+                    <textarea name="jawaban" class="form-control my-editor">{!! $jawaban -> jawaban !!}</textarea>
+                    @error('jawaban')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror 
-                </div>
-                <div class="form-group">
-                    <label for="tags"> Tags </label>
-                    <?php                    
-                    $tag = '';
-                    $tag_arr = [];
-                    foreach($pertanyaan->tag as $tags){
-                      $tag_arr [] = $tags->tag_name;
-                    }
-                    $tag=implode(',',$tag_arr); 
-                    ?>
-                    <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags', $tag) }}" placeholder="Pisahkan dengan koma, contoh: postingan,beritaterkini,update">
-                    <!-- @error('title')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror  -->
                 </div>
              </div>
                 <!-- /.card-body -->
