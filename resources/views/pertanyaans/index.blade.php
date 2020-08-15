@@ -16,18 +16,25 @@
 
             <div class="card">
               <div class="card-header justify-content-between">
-                {{ $pertanyaan -> user ->name }}
-                <div class="float-sm-right">
+                <span class="float-sm-left">
+                <h3>{{ $pertanyaan -> user ->name }}</h3>
+                
+                </span>
+                <span class="text-sm"> &nbsp &nbsp &nbsp Reputasi : {{ $vote[2][ $pertanyaan->user->id ] }}</span>
+                <span class="float-sm-right">
  
                   <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,up' }}/vote" class="">
-                  <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                  <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
                   <a class="btn btn-outline-secondary btn-sm m-1">
-                    10
+
+                    {{ $vote[0][ $pertanyaan->id ] }}
                   </a>
-                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,down' }}/vote" class="btn btn-outline-secondary btn-sm m-1">
-                  <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
                   
-                </div>
+                  @if($vote[2][ Auth::id() ] >=15)
+                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,down' }}/vote" class="">
+                  <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
+                  @endif
+                </span>
                   
               </div>
               <div class="card-body">
@@ -41,7 +48,7 @@
               <div class="mt-2 ml-3">
                 <h7 >Tags :</h7>  
                 @forelse($pertanyaan -> tag as $tag)
-                <a href="#" class="btn btn-outline-secondary btn-sm m-1">{{$tag->tag_name}}</a>
+                <a href="#" class="btn btn-outline-secondary btn-sm m-1 ">{{$tag->tag_name}}</a>
                 @empty
                 Belum ada tags
                 @endforelse
@@ -70,9 +77,28 @@
                       $jawaban = $pertanyaan->jawaban[$s-1];
                       ?>
                     <div class="card">
-                      <div class="card-header">
-                        {{ $jawaban -> user ->name }}
+                      <div class="card-header justify-content-between">
+                        <span class="float-sm-left">
+                        <h3>{{ $jawaban -> user ->name }}</h3>
+                        
+                        </span>
+                        <span class="text-sm"> &nbsp &nbsp &nbsp Reputasi : {{ $vote[2][ $jawaban->user->id ] }}</span>
+                        <span class="float-sm-right">
+        
+                          <a href="/pertanyaans/{{ $jawaban->id.',pertanyaans,up' }}/vote/create" class="">
+                          <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
+                          <a class="btn btn-outline-secondary btn-sm m-1">
+
+                            {{ $vote[1][ $jawaban->id ] }}
+                          </a>
+                          @if($vote[2][ Auth::id() ] >=15)
+                          <a href="/pertanyaans/{{ $jawaban->id.',pertanyaans,down' }}/vote/create" class="">
+                          <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
+                          @endif
+                        </span>
+                          
                       </div>
+                    
                       <div class="card-body">
                         <p class="card-text">{!! $jawaban -> jawaban !!}</p>
                         <!-- tombol -->

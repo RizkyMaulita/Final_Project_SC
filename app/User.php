@@ -43,6 +43,12 @@ class User extends Authenticatable
         return $this->hasMany('App\pertanyaan');
     }
 
+    //one to many jawaban
+    public function jawaban()
+    {
+        return $this->hasMany('App\jawaban');
+    }
+
     //one to many komentar pertanyaan
     public function komentarPertanyaan()
     {

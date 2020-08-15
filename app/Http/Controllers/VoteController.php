@@ -31,10 +31,15 @@ class VoteController extends Controller
             $newVote->pertanyaan_id = $id[0];
             $newVote->vote = $id[2];
             $newVote->save();
-        }else {
-            $vote->vote = $id[2];
+        }else if($id[2] == "up"){
+            $vote->vote = "up";
+            $vote->save();
+        }else if($id[2] == "down"){
+            $vote->vote = "down";
             $vote->save();
         }
+
+        //dd($vote);
 
         if($id[1]=="pertanyaans"){
             return redirect('/pertanyaans');
@@ -49,9 +54,36 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($param)
     {
-        //
+        $id = explode(',',$param);
+        $user = Auth::User();
+        $vote = votejawaban::where('user_id',$user->id)
+                    ->where('jawaban_id',$id[0])
+                    ->first();
+        
+        if($vote == NULL){
+            $newVote = new votejawaban;
+            $newVote->user_id = $user->id;
+            $newVote->jawaban_id = $id[0];
+            $newVote->vote = $id[2];
+            $newVote->save();
+        }else if($id[2] == "up"){
+            $vote->vote = "up";
+            $vote->save();
+        }else if($id[2] == "down"){
+            $vote->vote = "down";
+            $vote->save();
+        }
+
+        //dd($vote);
+
+        if($id[1]=="pertanyaans"){
+            return redirect('/pertanyaans');
+        }else{
+            return redirect("/pertanyaans/$id[0]");
+        }
+        
     }
 
     /**
@@ -71,9 +103,8 @@ class VoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($param)
     {
-        
         
 
       
