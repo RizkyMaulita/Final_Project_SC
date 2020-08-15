@@ -71,13 +71,9 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   public function edit($id1, $id)
+   public function edit($id)
     {
-        $jawaban = Jawaban::where([
-            'id' => $id,
-            'user_id' => Auth::id(),
-            'pertanyaan_id' => $id1
-        ])->first();
+        $jawaban = Jawaban::find($id);
         return view('jawabans.edit', compact('jawaban'));
     }
  

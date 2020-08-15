@@ -15,9 +15,19 @@
           @forelse($pertanyaans as $key => $pertanyaan)
 
             <div class="card">
-              <div class="card-header">
+              <div class="card-header justify-content-between">
                 {{ $pertanyaan -> user ->name }}
-
+                <div class="float-sm-right">
+ 
+                  <a href="/pertanyaans/{{ $pertanyaan->id }}/vote" class="btn btn-outline-secondary btn-sm m-1">
+                  <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                  <a class="btn btn-outline-secondary btn-sm m-1">
+                    10
+                  </a>
+                  <a href="#" class="btn btn-outline-secondary btn-sm m-1"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                  
+                </div>
+                  
               </div>
               <div class="card-body">
                 <h4 class="card-title">{{ $pertanyaan -> judul }}</h4>
@@ -63,7 +73,7 @@
                         {{ $jawaban -> user ->name }}
                       </div>
                       <div class="card-body">
-                        <p class="card-text">{{ $jawaban -> jawaban }}</p>
+                        <p class="card-text">{!! $jawaban -> jawaban !!}</p>
                         <!-- tombol -->
                         <div style='display:flex;'>
                           <a href="#" class="btn btn-primary btn-sm m-1">Komentari</a>

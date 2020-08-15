@@ -30,7 +30,7 @@
                                         <a href="#" class="btn btn-primary btn-sm m-1">Komentari</a>
                                         @if($questions -> user -> id == Auth::id() || $jawaban -> user -> id == Auth::id())
                                             @if($jawaban -> user -> id == Auth::id())
-                                            <a href="{{ $questions -> id }}/jawabans/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
+                                            <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
                                             @endif
                                             <form action="#" method="POST">
                                                 @csrf

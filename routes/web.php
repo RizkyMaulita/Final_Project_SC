@@ -1,4 +1,6 @@
 <?php
+
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -26,6 +28,7 @@ Route::resource('pertanyaans','PertanyaanController');
 Route::resource('jawabans','JawabanController');
 Route::resource('pertanyaans.komentarpertanyaans','KomentarPertanyaanController');
 Route::resource('pertanyaans.jawabans','JawabanController');
+Route::resource('pertanyaans.vote','VoteController');
 
 // Route::put('pertanyaans','KomentarPertanyaanController@store');
 //Route::put('/pertanyaans/{id}/show', 'KomentarPertanyaanController@create');
@@ -37,3 +40,6 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
