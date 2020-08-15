@@ -46,6 +46,11 @@
                                         </span>
                                         <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote['user'][ $jawaban->user->id ] }}</span>
                                         <span class="float-sm-right">
+                                        @if($jawaban->pertanyaan->jawaban_tepat_id != NULL)
+                                            <a class="m-1">
+                                                <i class="fa fa-star text-orange" aria-hidden="true"></i>
+                                            </a>  
+                                        @endif
                                         @if($jawaban->user->id != Auth::id())
                                         <a href="/pertanyaans/{{ $jawaban->id.',jawaban,up' }}/vote/create" class="m-1">
                                         <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
@@ -66,7 +71,9 @@
                                         <p class=" card-text">{!! $jawaban -> jawaban !!}</p>
                                         <!-- tombol -->
                                         <div style='display:flex;'>
+                                        
                                         @if($jawaban -> user -> id == Auth::id())
+                    
                                             <a href="/pertanyaans/{{ $jawaban -> id }}/jawabans" class="btn btn-primary btn-sm m-1">Tepat</a>
                                             <a href="/jawabans/{{ $jawaban -> id }}/edit" class="btn btn-primary btn-sm m-1">Ubah</a>
                                 
