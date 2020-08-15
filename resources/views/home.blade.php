@@ -18,6 +18,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"> Kita Stuck </div>
+
+                <div class="card-body">
+                    Yuk Masuk ke Forum 'Kita Stuck'
+                    <a href="/pertanyaans" class="btn btn-primary btn-sm m-1"> Forum </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
