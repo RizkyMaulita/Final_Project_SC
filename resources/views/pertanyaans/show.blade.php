@@ -11,7 +11,7 @@
                         <span class="float-sm-right">
                                 @if($questions->user->id != Auth::id())
 
-                                <a href="/pertanyaans/{{ $questions->id.',jawaban,up' }}/vote" class="m-1">
+                                <a href="/pertanyaans/{{ $questions->id.',jawab,up' }}/vote" class="m-1">
                                 <i class="fa fa-thumbs-up " aria-hidden="true"></i></a>
                                 @endif
                                 <a class="btn btn-outline-secondary btn-xs">
@@ -20,7 +20,7 @@
                                 </a>
                                 
                                 @if($vote['user'][ Auth::id() ] >=15 && $questions->user->id != Auth::id())
-                                <a href="/pertanyaans/{{ $questions->id.',jawaban,down' }}/vote" class="m-1">
+                                <a href="/pertanyaans/{{ $questions->id.',jawab,down' }}/vote" class="m-1">
                                 <i class="fa fa fa-thumbs-down text-red" aria-hidden="true"></i></a>
                                 @endif
                             </span>

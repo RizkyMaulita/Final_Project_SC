@@ -73,7 +73,7 @@
                   <div class="m-2 col-md">
                     <h6>Jawaban :</h6>
                     @if($pertanyaan->jawaban->count() > 0)
-                      @if($pertanyaan->j_tepat != NULL)
+                      @if($pertanyaan->jawaban_tepat_id != NULL)
                         <?php 
                         $jawaban = $pertanyaan->j_tepat;
                         ?>

@@ -43,7 +43,10 @@ class VoteController extends Controller
 
         if($id[1]=="pertanyaans"){
             return redirect('/pertanyaans');
-        }else{
+        }else if($id[1]=="jawab"){
+            return redirect("/pertanyaans/$id[0]");
+        }
+        else{
             $jawab = jawaban::find($id[0]);
             $idd = $jawab->pertanyaan->id;
             return redirect("/pertanyaans/$idd");
