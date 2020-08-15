@@ -14,7 +14,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="'/pertanyaans/{{$pertanyaan -> $jawaban}}/jawabans/{{$jawaban -> id}}" method="POST">
+              <form role="form" action="/jawabans/{{$jawaban -> id}}" method="POST">
                   @csrf
                   @method('PUT')
                 <div class="card-body">

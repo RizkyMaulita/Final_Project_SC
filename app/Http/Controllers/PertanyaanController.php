@@ -30,7 +30,7 @@ class PertanyaanController extends Controller
             'pertanyaan'=> $pertanyaan,
             'jawaban' => $jawaban
         ];
-        
+
         return view('pertanyaans.index',compact('pertanyaans','vote'));
     }
 
@@ -88,8 +88,8 @@ class PertanyaanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $questions = Pertanyaan::where('id', $id)->first();
+    { 
+        $questions = pertanyaan::find($id);
         return view('pertanyaans.show',compact('questions'));
     }
 
@@ -101,7 +101,7 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        $pertanyaan = Pertanyaan::where('id', $id)->first();
+        $pertanyaan = pertanyaan::where('id', $id)->first();
         return view('pertanyaans.edit', compact('pertanyaan'));
     }
 
