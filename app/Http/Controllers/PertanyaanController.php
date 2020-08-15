@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\pertanyaan;
 use App\tag;
 use App\User;
+use App\votejawaban;
+use App\votepertanyaan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -17,11 +19,19 @@ class PertanyaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $pertanyaans = Pertanyaan::orderBy('created_at','desc')->get();
-        //dd($pertanyaans);
-        return view('pertanyaans.index',compact('pertanyaans'));
+        $pertanyaan = votepertanyaan::get();
+        $jawaban = votejawaban::get();
+        $vote =[
+            'pertanyaan'=> $pertanyaan,
+            'jawaban' => $jawaban
+        ];
+        
+        return view('pertanyaans.index',compact('pertanyaans','vote'));
     }
 
     /**

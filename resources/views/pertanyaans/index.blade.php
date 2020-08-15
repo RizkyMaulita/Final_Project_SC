@@ -19,12 +19,13 @@
                 {{ $pertanyaan -> user ->name }}
                 <div class="float-sm-right">
  
-                  <a href="/pertanyaans/{{ $pertanyaan->id }}/vote" class="btn btn-outline-secondary btn-sm m-1">
+                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,up' }}/vote" class="btn btn-outline-secondary btn-sm m-1">
                   <i class="fa fa-arrow-up" aria-hidden="true"></i></a>
                   <a class="btn btn-outline-secondary btn-sm m-1">
                     10
                   </a>
-                  <a href="#" class="btn btn-outline-secondary btn-sm m-1"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                  <a href="/pertanyaans/{{ $pertanyaan->id.',pertanyaans,down' }}/vote" class="btn btn-outline-secondary btn-sm m-1">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
                   
                 </div>
                   

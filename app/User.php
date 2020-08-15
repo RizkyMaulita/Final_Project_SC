@@ -65,9 +65,4 @@ class User extends Authenticatable
         return $this->hasMany('App\votepertanyaan');
     }
 
-    public function getReputasi()
-    {
-        $pertanyaan = $this->votePertanyaan;
-        $jawaban = $this->voteJawaban;
-    }
 }

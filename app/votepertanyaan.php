@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class votepertanyaan extends Model
 {
+    public $timestamps = false;
     protected $guarded = [];
 
     //one to many user
@@ -19,4 +20,6 @@ class votepertanyaan extends Model
     {
         return $this->belongsTo('App\pertanyaan');
     }
+
+    
 }

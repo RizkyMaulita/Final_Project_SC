@@ -35,4 +35,6 @@ class jawaban extends Model
     {
         return $this->hasMany('App\votejawaban');
     }
+
+    
 }

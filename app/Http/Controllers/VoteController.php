@@ -13,11 +13,31 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($param)
     {
-        $user_id = Auth::id();
-        $vote = votepertanyaan::get();
-        dd($vote);
+        $id = explode(',',$param);
+        $user = Auth::User();
+        $vote = votepertanyaan::where('user_id',$user->id)
+                    ->where('pertanyaan_id',$id[0])
+                    ->first();
+        
+        if($vote == NULL){
+            $newVote = new votepertanyaan;
+            $newVote->user_id = $user->id;
+            $newVote->pertanyaan_id = $id[0];
+            $newVote->vote = $id[2];
+            $newVote->save();
+        }else {
+            $vote->vote = $id[2];
+            $vote->save();
+        }
+
+        if($id[1]=="pertanyaans"){
+            return redirect('/pertanyaans');
+        }else{
+            return redirect("/pertanyaans/$id[0]");
+        }
+
     }
 
     /**
