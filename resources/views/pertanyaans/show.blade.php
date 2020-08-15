@@ -46,7 +46,7 @@
                                         </span>
                                         <span class="text-xs"> &nbsp &nbsp &nbsp Reputasi : {{ $vote['user'][ $jawaban->user->id ] }}</span>
                                         <span class="float-sm-right">
-                                        @if($jawaban->pertanyaan->jawaban_tepat_id != NULL)
+                                        @if($jawaban->pertanyaan->jawaban_tepat_id == $jawaban->id )
                                             <a class="m-1">
                                                 <i class="fa fa-star text-orange" aria-hidden="true"></i>
                                             </a>  
